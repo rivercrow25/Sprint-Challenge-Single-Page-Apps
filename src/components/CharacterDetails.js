@@ -8,12 +8,17 @@ import {
 
 const CharacterDetails = () => {
     const [character, setCharacter] = useState()
-    const { itemId } = useParams
+    const { itemid } = useParams
+    console.log(useParams())
 
     useEffect(() => {
-        axios.get(`https://cors-anywhere.herokuapp.com/https://rickandmortyapi.com/api/character/${itemId}`)
+        axios.get(`https://cors-anywhere.herokuapp.com/https://rickandmortyapi.com/api/character/${itemid}`)
             .then(response => {
                 console.log(response)
+                setCharacter(response.data.results)
+            })
+            .catch(err => {
+                console.log(err)
             })
     }, [])
 
@@ -21,7 +26,7 @@ const CharacterDetails = () => {
 
     return (
         <div>
-            hello
+
         </div>
     )
 }

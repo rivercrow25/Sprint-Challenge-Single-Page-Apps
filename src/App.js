@@ -23,7 +23,7 @@ export default function App() {
         <Route path='/character-list'>
           <CharacterList />
         </Route>
-        <Route path='/character-details/:itemId'>
+        <Route path='/character-details/:itemid'>
           <CharacterDetails />
         </Route>
       </Switch>
