@@ -5,6 +5,8 @@ import CharacterCard from './CharacterCard'
 export default function CharacterList() {
   // TODO: Add useState to track data from useEffect
   const [char, setChar] = useState([])
+  const [query, setQuery] = useState('')
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     // TODO: Add API Request here - must run in `useEffect`
@@ -12,18 +14,28 @@ export default function CharacterList() {
     axios.get('https://cors-anywhere.herokuapp.com/https://rickandmortyapi.com/api/character/')
       .then(response => {
         console.log(response)
-        setChar(response.data.results)
+        setChar(response.data.results.filter(char => char.name.toLowerCase().includes(query.toLowerCase())))
       })
       .catch(err => {
         console.log(err)
       })
-  }, []);
+  }, [query]);
+
+  const handleInputChange = event => {
+    setSearch(event.target.value)
+  }
+
+  const handleSubmit = event => {
+    event.preventDefault()
+    setQuery(search)
+  }
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor='search-char'>Search Characters</label>
-        <input id='search-char' type='text' name='search-char' placeholder='Character name' />
+        <input onChange={handleInputChange} id='search-char' type='text' name='search-char' placeholder='Character name' />
+        <button type='submit'>button</button>
       </form>
       <section className="character-list">
         {char.map(char => {
