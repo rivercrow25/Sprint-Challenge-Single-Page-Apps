@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./components/Header.js";
 import CharacterList from './components/CharacterList'
 import WecomePage from './components/WelcomePage'
+import CharacterDetails from './components/CharacterDetails'
 import { Route, Switch, Link } from 'react-router-dom'
 
 
@@ -21,6 +22,9 @@ export default function App() {
 
         <Route path='/character-list'>
           <CharacterList />
+        </Route>
+        <Route path='/character-details/:itemId'>
+          <CharacterDetails />
         </Route>
       </Switch>
     </main>
